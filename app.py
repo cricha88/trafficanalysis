@@ -1,5 +1,5 @@
 from flask import Flask, escape, request, render_template
-from waitress import serve
+# from waitress import serve
 import urllib.request
 from PIL import Image
 import numpy as np
@@ -45,5 +45,5 @@ def camera():
 
 
 
-if __name__ == "__main__":
-    serve(app, port=8041, url_scheme='https')
+# if __name__ == "__main__":
+#     serve(app)

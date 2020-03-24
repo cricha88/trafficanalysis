@@ -1,1 +1,1 @@
-web: waitress-serve --port=8041 app:app
+web: gunicorn app:app
