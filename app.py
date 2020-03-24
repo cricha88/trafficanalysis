@@ -14,7 +14,7 @@ print(os.getcwd())
 model = load_model('genCNNc.h5')
 
 @app.route('/')
-def home():
+def main():
     return render_template('index.html')
 
 @app.route("/camera" , methods=['GET', 'POST'])
@@ -43,3 +43,7 @@ def camera():
     return render_template('index.html', whichcam=str(url), prediction=str(predstr))
     # return render_template('index.html', whichcam=str(url))
 
+
+
+if __name__ == "__main__":
+    serve(app, port=8041, url_scheme='https')
