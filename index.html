@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ML Traffic Analyzer</title>
+</head>
+<body>
+    <h1>ML Traffic Analyzer</h1>
+    <form action="/camera" method="POST">
+        <select name="whichcam" id="whichcam">
+            <option disabled selected value> -- Select a Camera -- </option>
+            <option value="16">Camera 16</option>
+            <option value="17">Camera 17</option>
+            <option value="18">Camera 18</option>
+            <option value="19">Camera 19</option>
+            <option value="20">Camera 20</option>
+            <option value="21">Camera 21</option>
+            <option value="22">Camera 22</option>
+            <option value="23">Camera 23</option>
+            <option value="24">Camera 24</option>
+        </select>
+        <button type="submit" class="btn btn-default">Check</button>
+    </form>
+
+    {% if whichcam %}
+    Looking at: {{ whichcam }} <br/>
+    <img src="{{ whichcam }}">
+    {% endif %}
+
+    {% if prediction %}
+    Predicted Congestion is: {{ prediction }} <br/>
+    {% endif %}
+
+</body>
+</html>
