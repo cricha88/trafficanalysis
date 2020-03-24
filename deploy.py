@@ -10,7 +10,7 @@ import os
 
 app = Flask(__name__)
 print(os.getcwd())
-model = load_model('genCNNc.h5')
+#model = load_model('genCNNc.h5')
 
 @app.route('/')
 def home():
@@ -31,12 +31,14 @@ def camera():
     imageurl = np.expand_dims(imageurl, axis=0)
 
     #load TEMPORARY model file
-    predint = model.predict_classes(imageurl)
-    if predint == 0:
-        predstr = 'Low Congestion'
-    if predint == 1:
-        predstr = 'Medium Congestion'
-    if predint == 2:
-        predstr = 'High Congestion'
-    return render_template('index.html', whichcam=str(url), prediction=str(predstr))
+    # predint = model.predict_classes(imageurl)
+    # if predint == 0:
+    #     predstr = 'Low Congestion'
+    # if predint == 1:
+    #     predstr = 'Medium Congestion'
+    # if predint == 2:
+    #     predstr = 'High Congestion'
+
+    # return render_template('index.html', whichcam=str(url), prediction=str(predstr))
+    return render_template('index.html', whichcam=str(url))
 
