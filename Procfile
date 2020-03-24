@@ -1,1 +1,1 @@
-web: gunicorn app:app --preload
+web: waitress app:app --preload
