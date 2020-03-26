@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.5.0/leaflet.markercluster.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header"><a class="navbar-brand">ML Traffic Analyzer</a></div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Cameras</a></li>
+                <li><a href="map.html">Map</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h1 class="text-center">ML Traffic Analyzer</h1>
+
+</head>
+<body>
+
+<div id="map" style="height: 400px;" class="container">
+
+    {% if lats %}
+    Lat is: {{ lats[0] }}
+    {% endif %}
+
+
+    <script type="text/javascript">
+        var map = L.map('map').setView([43.3663039,-79.7876763], 12);
+        var lats = [43.3594239, 43.3663808, 43.3757755, 43.3809508, 43.3878502, 43.3954986, 43.4024426, 43.4098217, 43.4141923, 43.4238980];
+        var longs = [-79.7959096, -79.7877246, -79.7768887,-79.7718078, -79.7639837,-79.7566257,-79.7473658,-79.7397511,-79.7354912,-79.7249817];
+        var layer = L.tileLayer(' https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+        });
+        var markerClusters = L.markerClusterGroup();
+
+        var marker = L.marker([43.3594239,-79.7959096]).bindPopup("<strong> {{ pred[0] }} </strong>", {autoClose:false});
+        markerClusters.addLayer(marker);
+        var marker = L.marker([43.3663808,-79.7877246]).bindPopup("<strong> {{ pred[1] }} </strong>", {autoClose:false});
+        markerClusters.addLayer(marker);
+        var marker = L.marker([43.3757755,-79.7768887]).bindPopup("<strong> {{ pred[2] }} </strong>", {autoClose:false});
+        markerClusters.addLayer(marker);
+        var marker = L.marker([43.3809508,-79.7718078]).bindPopup("<strong> {{ pred[3] }} </strong>", {autoClose:false});
+        markerClusters.addLayer(marker);
+        var marker = L.marker([43.3878502,-79.7639837]).bindPopup("<strong> {{ pred[4] }} </strong>", {autoClose:false});
+        markerClusters.addLayer(marker);
+        var marker = L.marker([43.3954986,-79.7566257]).bindPopup("<strong> {{ pred[5] }} </strong>", {autoClose:false});
+        markerClusters.addLayer(marker);
+        var marker = L.marker([43.4024426,-79.7473658]).bindPopup("<strong> {{ pred[6] }} </strong>", {autoClose:false});
+        markerClusters.addLayer(marker);
+        var marker = L.marker([43.4098217,-79.7397511]).bindPopup("<strong> {{ pred[7] }} </strong>", {autoClose:false});
+        markerClusters.addLayer(marker);
+        var marker = L.marker([43.4141923,-79.7354912]).bindPopup("<strong> {{ pred[8] }} </strong>", {autoClose:false});
+        markerClusters.addLayer(marker);
+        var marker = L.marker([43.4238980,-79.7249817]).bindPopup("<strong> {{ pred[9] }} </strong>", {autoClose:false});
+        markerClusters.addLayer(marker);
+
+        markerClusters.openPopup();
+        map.addLayer(layer).addLayer(markerClusters);
+
+    </script>
+
+</div>
+
+</body>
+</html>

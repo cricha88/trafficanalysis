@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <head>
     <meta charset="UTF-8">
-    <title>ML Traffic Analyzer</title>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header"><a class="navbar-brand">ML Traffic Analyzer</a></div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Cameras</a></li>
+                <li><a href="/map.html">Map</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h1 class="text-center">ML Traffic Analyzer</h1>
+
 </head>
 <body>
-    <h1>ML Traffic Analyzer</h1>
+    <div class="container">
     <form action="/camera" method="POST">
-        <select name="whichcam" id="whichcam">
+        <select name="whichcam" id="whichcam" class="form-control-static">
             <option disabled selected value> -- Select a Camera -- </option>
+            <option value="15">Camera 15</option>
             <option value="16">Camera 16</option>
             <option value="17">Camera 17</option>
             <option value="18">Camera 18</option>
@@ -23,13 +37,18 @@
     </form>
 
     {% if whichcam %}
-    Looking at: {{ whichcam }} <br/>
-    <img src="{{ whichcam }}">
+        <p class="lead"><b>Looking at:</b> {{ whichcam }} </p>
+        <img src="{{ whichcam }}">
+    {% endif %}
+    {% if pred_con %}
+        <p class="lead"><b>Predicted Congestion is:</b> {{ pred_con }} <br/>
+    {% endif %}
+    {% if pred_lt %}
+        <b>Level of light is:</b> {{ pred_lt }} </p>
     {% endif %}
 
-    {% if prediction %}
-    Predicted Congestion is: {{ prediction }} <br/>
-    {% endif %}
+    </div>
+
 
 </body>
 </html>
