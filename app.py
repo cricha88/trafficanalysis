@@ -56,7 +56,7 @@ def camera():
 
     return render_template('index.html', whichcam=str(url), pred_con=predstr_con, pred_lt=predstr_lt)
 
-@app.route("/map.html" , methods=['POST'])
+@app.route("/map.html" , methods=['GET', 'POST'])
 def map():
     pred = []
 
