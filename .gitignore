@@ -1,3 +1,5 @@
 env
 requirements.txt
 __pycache__
+genCNNc.h5
+initCNNl.h5
